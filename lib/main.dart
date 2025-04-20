@@ -1,15 +1,17 @@
-import 'package:auto_expense_tracker/screens/OnBoarding_1.dart';
 import 'package:auto_expense_tracker/screens/SignUpScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:auto_expense_tracker/screens/HomeScreen.dart';
 import 'package:auto_expense_tracker/screens/AnalysisScreen.dart';
-import 'package:auto_expense_tracker/screens/ReminderScreen.dart';
-import 'package:auto_expense_tracker/screens/SettingsScreen.dart';
 import 'package:auto_expense_tracker/screens/LoginScreen.dart';
-void main() {
-  runApp(MyApp());
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
+void main() async {
+WidgetsFlutterBinding.ensureInitialized();
+await Firebase.initializeApp(
+  options: DefaultFirebaseOptions.currentPlatform,
+);
+runApp(const MyApp());
 }
-
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
@@ -33,11 +35,10 @@ class _DashboardScreenState extends State<DashboardScreen> {
   int _selectedIndex = 0;
 
   final List<Widget> _pages = [
-    // HomeScreen(),
     HomeScreen(),
     AnalysisScreen(),
-    ReminderScreen(),
-    SettingsScreen(),
+    Loginscreen(),
+    Signupscreen(),
   ];
 
   void _onItemTapped(int index) {
@@ -69,4 +70,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
     );
   }
 }
+
+
+
+
+
 
