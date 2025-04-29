@@ -1,0 +1,2 @@
+/Users/fawaz/Desktop/auto_expense_tracker/android/app/.cxx/Debug/6v414x1z/armeabi-v7a/CMakeFiles/edit_cache.dir
+/Users/fawaz/Desktop/auto_expense_tracker/android/app/.cxx/Debug/6v414x1z/armeabi-v7a/CMakeFiles/rebuild_cache.dir

@@ -1,29 +1,41 @@
-import 'package:auto_expense_tracker/screens/OnBoarding_1.dart';
-import 'package:auto_expense_tracker/screens/SignUpScreen.dart';
+import 'package:auto_expense_tracker/screens/BudgetScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:auto_expense_tracker/screens/HomeScreen.dart';
 import 'package:auto_expense_tracker/screens/AnalysisScreen.dart';
-import 'package:auto_expense_tracker/screens/ReminderScreen.dart';
 import 'package:auto_expense_tracker/screens/SettingsScreen.dart';
-import 'package:auto_expense_tracker/screens/LoginScreen.dart';
-void main() {
-  runApp(MyApp());
+import 'package:auto_expense_tracker/assets/financial_data_service.dart';
+import 'package:auto_expense_tracker/models/financial_data.dart';
+
+void main() async {
+  // Ensure Flutter is initialized
+  WidgetsFlutterBinding.ensureInitialized();
+  print('financial data values starting ');
+  // Load financial data before running the app
+  final FinancialDataService dataService = FinancialDataService();
+  final FinancialData financialData = await dataService.loadFinancialData();
+  print('financial data values given ');
+
+  runApp(MyApp(financialData: financialData));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  final FinancialData financialData;
+
+  const MyApp({super.key, required this.financialData});
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: DashboardScreen(),
+      home: DashboardScreen(financialData: financialData),
     );
   }
 }
 
 class DashboardScreen extends StatefulWidget {
-  const DashboardScreen({super.key});
+  final FinancialData financialData;
+
+  const DashboardScreen({super.key, required this.financialData});
 
   @override
   _DashboardScreenState createState() => _DashboardScreenState();
@@ -31,14 +43,19 @@ class DashboardScreen extends StatefulWidget {
 
 class _DashboardScreenState extends State<DashboardScreen> {
   int _selectedIndex = 0;
+  late List<Widget> _pages;
 
-  final List<Widget> _pages = [
-    // HomeScreen(),
-    HomeScreen(),
-    AnalysisScreen(),
-    ReminderScreen(),
-    SettingsScreen(),
-  ];
+  @override
+  void initState() {
+    super.initState();
+    // Initialize pages with the financial data
+    _pages = [
+      HomeScreen(financialData: widget.financialData),
+      AnalysisScreen(financialData: widget.financialData),
+      BudgetScreen(),
+      SettingsScreen(financialData: widget.financialData),
+    ];
+  }
 
   void _onItemTapped(int index) {
     setState(() {
@@ -69,4 +86,3 @@ class _DashboardScreenState extends State<DashboardScreen> {
     );
   }
 }
-

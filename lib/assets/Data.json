@@ -1,0 +1,520 @@
+{
+    "users": [
+      {
+        "user_id": "U001",
+        "personal_info": {
+          "name": "Ahmed Al Otaibi",
+          "dob": "1988-03-22"
+        },
+        "preferences": {
+          "theme": "light",
+          "language": "ar",
+          "notifications_enabled": true
+        },
+        "bank_accounts": [
+          {
+            "account_id": "BA001",
+            "bank_name": "ALRAJHI",
+            "account_number": "102030405060",
+            "account_type": "Checking",
+            "balance": 25000.50,
+            "transactions": [
+              {
+                "transaction_id": "T001",
+                "amount": 300.00,
+                "date_time": "2024-11-01T09:15:00Z",
+                "category": "Groceries",
+                "merchant_details": {
+                  "name": "Carrefour",
+                  "location": "Riyadh, KSA"
+                }
+              },
+              {
+                "transaction_id": "T002",
+                "amount": 150.75,
+                "date_time": "2024-11-03T18:45:00Z",
+                "category": "Food",
+                "merchant_details": {
+                  "name": "AlBaik",
+                  "location": "Jeddah, KSA"
+                }
+              },
+              {
+                "transaction_id": "T004",
+                "amount": 250.00,
+                "date_time": "2024-11-06T11:00:00Z",
+                "category": "Education",
+                "merchant_details": {
+                  "name": "University of Riyadh",
+                  "location": "Riyadh, KSA"
+                }
+              },
+              {
+                "transaction_id": "T005",
+                "amount": 120.50,
+                "date_time": "2024-11-07T15:30:00Z",
+                "category": "Bookstore",
+                "merchant_details": {
+                  "name": "Jarir Bookstore",
+                  "location": "Dammam, KSA"
+                }
+              },
+              {
+                "transaction_id": "T006",
+                "amount": 45.00,
+                "date_time": "2024-11-08T20:00:00Z",
+                "category": "Entertainment",
+                "merchant_details": {
+                  "name": "Netflix",
+                  "location": "Online"
+                }
+              },
+              {
+                "transaction_id": "T007",
+                "amount": 35.00,
+                "date_time": "2024-11-09T21:00:00Z",
+                "category": "Entertainment",
+                "merchant_details": {
+                  "name": "Shahid",
+                  "location": "Online"
+                }
+              },
+              {
+                "transaction_id": "T008",
+                "amount": 500.00,
+                "date_time": "2024-11-10T13:00:00Z",
+                "category": "Transfer",
+                "merchant_details": {
+                  "name": "Transfer to Friend",
+                  "location": "Riyadh, KSA"
+                }
+              },
+              {
+                "transaction_id": "T009",
+                "amount": 2000.00,
+                "date_time": "2024-11-11T10:00:00Z",
+                "category": "Deposit",
+                "merchant_details": {
+                  "name": "Salary Deposit",
+                  "location": "Riyadh, KSA"
+                }
+              },
+              {
+                "transaction_id": "T010",
+                "amount": 300.00,
+                "date_time": "2024-11-12T12:00:00Z",
+                "category": "Withdrawal",
+                "merchant_details": {
+                  "name": "ATM Withdrawal",
+                  "location": "Jeddah, KSA"
+                }
+              },
+              {
+                "transaction_id": "T011",
+                "amount": 450.00,
+                "date_time": "2024-11-13T14:00:00Z",
+                "category": "Online Shopping",
+                "merchant_details": {
+                  "name": "Amazon",
+                  "location": "Online"
+                }
+              },
+              {
+                "transaction_id": "T012",
+                "amount": 220.00,
+                "date_time": "2024-11-14T16:00:00Z",
+                "category": "Groceries",
+                "merchant_details": {
+                  "name": "Panda",
+                  "location": "Dammam, KSA"
+                }
+              },
+              {
+                "transaction_id": "T013",
+                "amount": 1500.00,
+                "date_time": "2024-11-15T18:00:00Z",
+                "category": "Government Payment",
+                "merchant_details": {
+                  "name": "Motor Payment",
+                  "location": "Riyadh, KSA"
+                }
+              },
+              {
+                "transaction_id": "T014",
+                "amount": 100.00,
+                "date_time": "2024-11-16T10:00:00Z",
+                "category": "Health",
+                "merchant_details": {
+                  "name": "Riyadh Hospital",
+                  "location": "Riyadh, KSA"
+                }
+              },
+              {
+                "transaction_id": "T015",
+                "amount": 75.00,
+                "date_time": "2024-11-17T12:00:00Z",
+                "category": "Pharmacy",
+                "merchant_details": {
+                  "name": "Al Nahdi Pharmacy",
+                  "location": "Jeddah, KSA"
+                }
+              },
+              {
+                "transaction_id": "T016",
+                "amount": 200.00,
+                "date_time": "2024-11-18T14:00:00Z",
+                "category": "Bill Payment",
+                "merchant_details": {
+                  "name": "Electricity Bill",
+                  "location": "Riyadh, KSA"
+                }
+              },
+              {
+                "transaction_id": "T017",
+                "amount": 150.00,
+                "date_time": "2024-11-19T16:00:00Z",
+                "category": "Bill Payment",
+                "merchant_details": {
+                  "name": "Water Bill",
+                  "location": "Dammam, KSA"
+                }
+              },
+              {
+                "transaction_id": "T018",
+                "amount": 80.00,
+                "date_time": "2024-11-20T18:00:00Z",
+                "category": "Transport",
+                "merchant_details": {
+                  "name": "Uber",
+                  "location": "Riyadh, KSA"
+                }
+              },
+              {
+                "transaction_id": "T019",
+                "amount": 120.00,
+                "date_time": "2024-11-21T20:00:00Z",
+                "category": "Transport",
+                "merchant_details": {
+                  "name": "Careem",
+                  "location": "Jeddah, KSA"
+                }
+              },
+              {
+                "transaction_id": "T020",
+                "amount": 300.00,
+                "date_time": "2024-11-22T22:00:00Z",
+                "category": "Health",
+                "merchant_details": {
+                  "name": "Dental Clinic",
+                  "location": "Riyadh, KSA"
+                }
+              },
+              {
+                "transaction_id": "T021",
+                "amount": 50.00,
+                "date_time": "2024-11-23T09:00:00Z",
+                "category": "Pharmacy",
+                "merchant_details": {
+                  "name": "Boots Pharmacy",
+                  "location": "Dammam, KSA"
+                }
+              }
+            ]
+          },
+          {
+            "account_id": "BA002",
+            "bank_name": "ALINMA",
+            "account_number": "506070809010",
+            "account_type": "Savings",
+            "balance": 18000.00,
+            "transactions": [
+              {
+                "transaction_id": "T003",
+                "amount": 500.00,
+                "date_time": "2024-11-05T14:20:00Z",
+                "category": "Utilities",
+                "merchant_details": {
+                  "name": "STC",
+                  "location": "Dammam, KSA"
+                }
+              },
+              {
+                "transaction_id": "T022",
+                "amount": 200.00,
+                "date_time": "2024-11-06T10:00:00Z",
+                "category": "Health",
+                "merchant_details": {
+                  "name": "King Fahad Hospital",
+                  "location": "Riyadh, KSA"
+                }
+              },
+              {
+                "transaction_id": "T023",
+                "amount": 100.00,
+                "date_time": "2024-11-07T12:00:00Z",
+                "category": "Pharmacy",
+                "merchant_details": {
+                  "name": "Al Nahdi Pharmacy",
+                  "location": "Riyadh, KSA"
+                }
+              },
+              {
+                "transaction_id": "T024",
+                "amount": 150.00,
+                "date_time": "2024-11-08T14:00:00Z",
+                "category": "Bill Payment",
+                "merchant_details": {
+                  "name": "Internet Bill",
+                  "location": "Jeddah, KSA"
+                }
+              },
+              {
+                "transaction_id": "T025",
+                "amount": 300.00,
+                "date_time": "2024-11-09T16:00:00Z",
+                "category": "Education",
+                "merchant_details": {
+                  "name": "Online Course",
+                  "location": "Online"
+                }
+              },
+              {
+                "transaction_id": "T026",
+                "amount": 80.00,
+                "date_time": "2024-11-10T18:00:00Z",
+                "category": "Transport",
+                "merchant_details": {
+                  "name": "Uber",
+                  "location": "Dammam, KSA"
+                }
+              },
+              {
+                "transaction_id": "T027",
+                "amount": 120.00,
+                "date_time": "2024-11-11T20:00:00Z",
+                "category": "Transport",
+                "merchant_details": {
+                  "name": "Careem",
+                  "location": "Riyadh, KSA"
+                }
+              },
+              {
+                "transaction_id": "T028",
+                "amount": 400.00,
+                "date_time": "2024-11-12T22:00:00Z",
+                "category": "Health",
+                "merchant_details": {
+                  "name": "Eye Clinic",
+                  "location": "Jeddah, KSA"
+                }
+              },
+              {
+                "transaction_id": "T029",
+                "amount": 60.00,
+                "date_time": "2024-11-13T09:00:00Z",
+                "category": "Pharmacy",
+                "merchant_details": {
+                  "name": "Boots Pharmacy",
+                  "location": "Riyadh, KSA"
+                }
+              },
+              {
+                "transaction_id": "T030",
+                "amount": 250.00,
+                "date_time": "2024-11-14T11:00:00Z",
+                "category": "Groceries",
+                "merchant_details": {
+                  "name": "Carrefour",
+                  "location": "Dammam, KSA"
+                }
+              },
+              {
+                "transaction_id": "T031",
+                "amount": 100.00,
+                "date_time": "2024-11-15T13:00:00Z",
+                "category": "Food",
+                "merchant_details": {
+                  "name": "McDonald's",
+                  "location": "Riyadh, KSA"
+                }
+              },
+              {
+                "transaction_id": "T032",
+                "amount": 150.00,
+                "date_time": "2024-11-16T15:00:00Z",
+                "category": "Entertainment",
+                "merchant_details": {
+                  "name": "Cinema",
+                  "location": "Jeddah, KSA"
+                }
+              },
+              {
+                "transaction_id": "T033",
+                "amount": 200.00,
+                "date_time": "2024-11-17T17:00:00Z",
+                "category": "Online Shopping",
+                "merchant_details": {
+                  "name": "Noon",
+                  "location": "Online"
+                }
+              },
+              {
+                "transaction_id": "T034",
+                "amount": 300.00,
+                "date_time": "2024-11-18T19:00:00Z",
+                "category": "Government Payment",
+                "merchant_details": {
+                  "name": "Traffic Fine",
+                  "location": "Riyadh, KSA"
+                }
+              },
+              {
+                "transaction_id": "T035",
+                "amount": 1000.00,
+                "date_time": "2024-11-19T21:00:00Z",
+                "category": "Deposit",
+                "merchant_details": {
+                  "name": "Savings Deposit",
+                  "location": "Riyadh, KSA"
+                }
+              },
+              {
+                "transaction_id": "T036",
+                "amount": 500.00,
+                "date_time": "2024-11-20T23:00:00Z",
+                "category": "Transfer",
+                "merchant_details": {
+                  "name": "Transfer to Family",
+                  "location": "Jeddah, KSA"
+                }
+              },
+              {
+                "transaction_id": "T037",
+                "amount": 200.00,
+                "date_time": "2024-11-21T10:00:00Z",
+                "category": "Health",
+                "merchant_details": {
+                  "name": "Lab Test",
+                  "location": "Riyadh, KSA"
+                }
+              },
+              {
+                "transaction_id": "T038",
+                "amount": 50.00,
+                "date_time": "2024-11-22T12:00:00Z",
+                "category": "Pharmacy",
+                "merchant_details": {
+                  "name": "Al Nahdi Pharmacy",
+                  "location": "Dammam, KSA"
+                }
+              },
+              {
+                "transaction_id": "T039",
+                "amount": 150.00,
+                "date_time": "2024-11-23T14:00:00Z",
+                "category": "Bill Payment",
+                "merchant_details": {
+                  "name": "Mobile Bill",
+                  "location": "Riyadh, KSA"
+                }
+              },
+              {
+                "transaction_id": "T040",
+                "amount": 300.00,
+                "date_time": "2024-11-24T16:00:00Z",
+                "category": "Education",
+                "merchant_details": {
+                  "name": "School Fees",
+                  "location": "Jeddah, KSA"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "budgets": [
+      {
+        "budget_id": "B001",
+        "category": "Income Budget",
+        "amount_allocated": 10000,
+        "time_period": "monthly",
+        "notification_thresholds": {
+          "warning": 8000,
+          "critical": 9000
+        }
+      },
+      {
+        "budget_id": "B002",
+        "category": "Family Budget",
+        "amount_allocated": 4000,
+        "time_period": "monthly",
+        "notification_thresholds": {
+          "warning": 3000,
+          "critical": 3500
+        }
+      }
+    ],
+    "categories": [
+      {
+        "category_id": "C001",
+        "category_name": "Groceries"
+      },
+      {
+        "category_id": "C002",
+        "category_name": "Food"
+      },
+      {
+        "category_id": "C003",
+        "category_name": "Utilities"
+      },
+      {
+        "category_id": "C004",
+        "category_name": "Entertainment"
+      },
+      {
+        "category_id": "C005",
+        "category_name": "Education"
+      },
+      {
+        "category_id": "C006",
+        "category_name": "Bookstore"
+      },
+      {
+        "category_id": "C007",
+        "category_name": "Transfer"
+      },
+      {
+        "category_id": "C008",
+        "category_name": "Deposit"
+      },
+      {
+        "category_id": "C009",
+        "category_name": "Withdrawal"
+      },
+      {
+        "category_id": "C010",
+        "category_name": "Online Shopping"
+      },
+      {
+        "category_id": "C011",
+        "category_name": "Government Payment"
+      },
+      {
+        "category_id": "C012",
+        "category_name": "Health"
+      },
+      {
+        "category_id": "C013",
+        "category_name": "Pharmacy"
+      },
+      {
+        "category_id": "C014",
+        "category_name": "Bill Payment"
+      },
+      {
+        "category_id": "C015",
+        "category_name": "Transport"
+      }
+    ]
+  }
