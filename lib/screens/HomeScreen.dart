@@ -2,7 +2,6 @@ import 'package:auto_expense_tracker/models/financial_data.dart';
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
 
-// Placeholder Screens
 class HomeScreen extends StatefulWidget {
   final FinancialData financialData;
 
@@ -12,57 +11,91 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreen extends State<HomeScreen> {
-  // State variable to hold the list of card titles
-  List<String> cardTitles = [
-    'Card 1',
-    'Card 2',
-    'Card 3',
-    'Card 4',
-    'Card 5',
+  // List of card data (color, amount, subtitle)
+  final List<Map<String, dynamic>> cards = [
+    {
+      'color': Colors.green,
+      'amount': '4321',
+      'subtitle': 'AlAhli Bank',
+      'icon': Icons.account_balance_wallet,
+    },
+    {
+      'color': Colors.blue,
+      'amount': '5678',
+      'subtitle': 'AlRajhi',
+      'icon': Icons.account_balance_wallet,
+    },
+    {
+      'color': Colors.brown,
+      'amount': '9012',
+      'subtitle': 'Alinma',
+      'icon': Icons.account_balance_wallet,
+    },
+    {
+      'color': Colors.blue.shade900,
+      'amount': '3456',
+      'subtitle': 'BSF',
+      'icon': Icons.account_balance_wallet,
+    },
   ];
-
-  // Function to add a new card
-  void _addCard() {
-    setState(() {
-      cardTitles.add('Card ${cardTitles.length + 1}');
-    });
-  }
-
-  // Function to remove a card
-  void _removeCard(int index) {
-    setState(() {
-      cardTitles.removeAt(index);
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
+        const SizedBox(height: 70),
         SizedBox(
-          height: 70,
-        ),
-        Flexible(
+          height: 180, // Fixed height for the cards container
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
-            itemCount: cardTitles.length,
+            itemCount: cards.length,
             itemBuilder: (context, index) {
-              return GestureDetector(
-                onDoubleTap: () => _removeCard(index), // Remove card on tap
-                child: Card(
-                  margin: EdgeInsets.all(10.0),
-                  child: Container(
-                    color: Colors.blue,
-                    width: 150.0,
-                    padding: EdgeInsets.all(16.0),
-                    child: Center(
-                      child: Text(
-                        cardTitles[index],
-                        style: TextStyle(
-                          fontSize: 18.0,
-                          fontWeight: FontWeight.bold,
-                        ),
+              return SizedBox( // Use SizedBox for fixed dimensions
+                width: 150, // Fixed width
+                height: 180, // Fixed height
+                child: Container(
+                  margin: const EdgeInsets.all(10.0),
+                  decoration: BoxDecoration(
+                    color: cards[index]['color'],
+                    borderRadius: BorderRadius.circular(12.0),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withOpacity(0.1),
+                        blurRadius: 6,
+                        offset: const Offset(0, 3),
                       ),
+                    ],
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Icon(
+                          cards[index]['icon'],
+                          color: Colors.white,
+                          size: 24,
+                        ),
+                        const Spacer(),
+                        Center(
+                          child: Text(
+                            cards[index]['amount'],
+                            style: const TextStyle(
+                              fontSize: 24.0,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                        const Spacer(),
+                        Text(
+                          cards[index]['subtitle'],
+                          style: const TextStyle(
+                            fontSize: 14.0,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ),
@@ -70,14 +103,10 @@ class _HomeScreen extends State<HomeScreen> {
             },
           ),
         ),
-        SizedBox(
-          height: 30,
-        ),
+        const SizedBox(height: 30),
         Row(
           children: [
-            SizedBox(
-              width: 10,
-            ),
+            const SizedBox(width: 10),
             Expanded(
               child: Align(
                 alignment: Alignment.centerLeft,
@@ -103,22 +132,18 @@ class _HomeScreen extends State<HomeScreen> {
                 ),
               ),
             ),
-            SizedBox(
-              width: 10,
-            ),
+            const SizedBox(width: 10),
           ],
         ),
-        SizedBox(
-          height: 20,
-        ),
+        const SizedBox(height: 20),
         // Bar Chart
         Container(
-          height: 300, // Set a fixed height for the chart
-          padding: EdgeInsets.symmetric(horizontal: 10),
+          height: 300,
+          padding: const EdgeInsets.symmetric(horizontal: 10),
           child: BarChart(
             BarChartData(
               alignment: BarChartAlignment.spaceAround,
-              maxY: 20, // Maximum Y-axis value
+              maxY: 20,
               barGroups: _createBarGroups(),
               titlesData: FlTitlesData(
                 show: true,
@@ -126,7 +151,6 @@ class _HomeScreen extends State<HomeScreen> {
                   sideTitles: SideTitles(
                     showTitles: true,
                     getTitlesWidget: (value, meta) {
-                      // Customize X-axis labels
                       switch (value.toInt()) {
                         case 0:
                           return Text('Jan');
@@ -148,7 +172,6 @@ class _HomeScreen extends State<HomeScreen> {
                   sideTitles: SideTitles(
                     showTitles: true,
                     getTitlesWidget: (value, meta) {
-                      // Customize Y-axis labels
                       return Text(value.toInt().toString());
                     },
                   ),
@@ -163,16 +186,15 @@ class _HomeScreen extends State<HomeScreen> {
     );
   }
 
-  // Create bar groups (data for the chart)
   List<BarChartGroupData> _createBarGroups() {
     return [
       BarChartGroupData(
-        x: 0, // X-axis position
+        x: 0,
         barRods: [
           BarChartRodData(
-            toY: 8, // Y-axis value
+            toY: 8,
             color: Colors.blue,
-            width: 20, // Bar width
+            width: 20,
           ),
         ],
       ),

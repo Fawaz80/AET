@@ -21,7 +21,7 @@ class BudgetCard extends StatefulWidget {
   final String budgetType;
 
   const BudgetCard({
-    super.key,
+    Key? key,
     required this.budgetTitle,
     required this.budgetAmount,
     required this.budgetCurr,
@@ -29,7 +29,7 @@ class BudgetCard extends StatefulWidget {
     required this.budgetDate,
     required this.budgetType,
     this.alert,
-  });
+  }) : super(key: key);
 
   @override
   _BudgetCardState createState() => _BudgetCardState();
@@ -130,7 +130,7 @@ class _BudgetCardState extends State<BudgetCard> {
               ),
               // The actual "filled" portion
               LayoutBuilder(builder: (context, constraints) {
-                final width = constraints.maxWidth * ((widget.budgetCurr ?? 0) / widget.budgetAmount);
+                final width = constraints.maxWidth * ((widget.budgetCurr ?? 0)! / widget.budgetAmount);
                 return Container(
                   height: 8,
                   width: width,

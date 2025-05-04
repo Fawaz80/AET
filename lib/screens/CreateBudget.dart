@@ -1,4 +1,4 @@
-import '../widgets/BudgetCard.dart';
+import 'package:auto_expense_tracker/widgets/BudgetCard.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -19,7 +19,7 @@ void showCreateBudgetModal(BuildContext context) {
 enum BudgetType { monthly, weekly}
 
 class CreateBudgetModal extends StatefulWidget {
-  const CreateBudgetModal({super.key});
+  const CreateBudgetModal({Key? key}) : super(key: key);
 
   @override
   State<CreateBudgetModal> createState() => _CreateBudgetModalState();
@@ -33,7 +33,7 @@ class _CreateBudgetModalState extends State<CreateBudgetModal> {
   String budgetFrequency = 'Monthly';
   String category = '';
   DateTime? budgetDate = DateTime.now();
-  double budgetAmount = 0;
+  double budgetAmount = 0.0;
 
   // Alert toggle & slider (shown on Page 2)
   bool receiveAlert = false;
@@ -575,6 +575,7 @@ Widget _buildPage2() {
         'category': category,
         'budgetDate': budgetDate,
         'budgetAmount': budgetAmount,
+        'budgetCurr': 0.0, // Placeholder for current amount
         'receiveAlert': receiveAlert,
         'alertThreshold': alertValue, // 0..1 range
       },

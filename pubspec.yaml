@@ -24,3 +24,6 @@ flutter:
   
   assets:
     - lib/assets/Data.json
+    - lib/assets/coin.png
+    - lib/assets/Coint.png
+    - lib/assets/chat_placeholder.png

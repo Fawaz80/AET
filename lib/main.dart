@@ -1,10 +1,15 @@
 import 'package:auto_expense_tracker/screens/BudgetScreen.dart';
+import 'package:auto_expense_tracker/screens/EditProfileScreen.dart';
+import 'package:auto_expense_tracker/screens/ProfileScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:auto_expense_tracker/screens/HomeScreen.dart';
 import 'package:auto_expense_tracker/screens/AnalysisScreen.dart';
 import 'package:auto_expense_tracker/screens/SettingsScreen.dart';
+import 'package:auto_expense_tracker/screens/ChatScreen.dart'; // Add this import
 import 'package:auto_expense_tracker/assets/financial_data_service.dart';
 import 'package:auto_expense_tracker/models/financial_data.dart';
+
+import 'screens/ChatScreen.dart';
 
 void main() async {
   // Ensure Flutter is initialized
@@ -15,7 +20,9 @@ void main() async {
   final FinancialData financialData = await dataService.loadFinancialData();
   print('financial data values given ');
 
-  runApp(MyApp(financialData: financialData));
+  runApp(
+    MyApp(financialData: financialData),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -27,7 +34,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: DashboardScreen(financialData: financialData),
+      home: DashboardScreen(
+        financialData: financialData,
+      ),
     );
   }
 }
@@ -52,8 +61,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
     _pages = [
       HomeScreen(financialData: widget.financialData),
       AnalysisScreen(financialData: widget.financialData),
+      ChatScreen(), // New Chatbot screen in the middle
       BudgetScreen(),
-      SettingsScreen(financialData: widget.financialData),
+      ProfileScreen(),
     ];
   }
 
@@ -78,9 +88,14 @@ class _DashboardScreenState extends State<DashboardScreen> {
         unselectedItemColor: Colors.grey,
         items: const [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
-          BottomNavigationBarItem(icon: Icon(Icons.pie_chart), label: "Analysis"),
-          BottomNavigationBarItem(icon: Icon(Icons.notifications), label: "Reminders"),
-          BottomNavigationBarItem(icon: Icon(Icons.settings), label: "Settings"),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.pie_chart), label: "Analysis"),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.chat), label: "Chatbot"), // New Chatbot item
+          BottomNavigationBarItem(
+              icon: Icon(Icons.notifications), label: "Reminders"),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.settings), label: "Settings"),
         ],
       ),
     );
