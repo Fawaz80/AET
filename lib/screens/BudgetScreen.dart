@@ -1,6 +1,6 @@
 import 'package:auto_expense_tracker/screens/BudgetDetailScreen.dart';
 import 'package:auto_expense_tracker/screens/CreateBudget.dart';
-import '../widgets/BudgetCard.dart';
+import 'package:auto_expense_tracker/widgets/BudgetCard.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -31,10 +31,10 @@ class _AnalysisState extends State<BudgetScreen> {
     // If user cancelled, result might be null
     if (result != null && result is Map<String, dynamic>) {
       if (!result.containsKey('budgetAmount')) {
-        result['budgetAmount'] = 0;
+        result['budgetAmount'] = 0.0;
       }
       if (!result.containsKey('budgetCurr')) {
-        result['budgetCurr'] = 0;
+        result['budgetCurr'] = 0.0;
       }
       if (!result.containsKey('category')) {
         result['category'] = 'Misc';
@@ -87,7 +87,7 @@ class _AnalysisState extends State<BudgetScreen> {
     double sum = 0;
     for (final bud in _budgets) {
       // Make sure each bud has 'budgetCurr'
-      sum += (bud['budgetCurr'] ?? 0);
+      sum += (bud['budgetCurr'] ?? 0.0);
     }
     return sum;
   }
@@ -96,7 +96,7 @@ class _AnalysisState extends State<BudgetScreen> {
     double sum = 0;
     for (final bud in _budgets) {
       // Make sure each bud has 'budgetAmount'
-      sum += (bud['budgetAmount'] ?? 0);
+      sum += (bud['budgetAmount'] ?? 0.0);
     }
     return sum;
   }
@@ -174,11 +174,11 @@ class _AnalysisState extends State<BudgetScreen> {
           Stack(
             children: [
               Positioned(
-                top: 10,
+                top: 20,
                 left: 0,
                 child: Opacity(
                   opacity: 1,
-                  child: Image.asset('assets/images/Coint.png'),
+                  child: Image.asset('lib/assets/Coint.png'),
                 ),
               ),
               Positioned(
@@ -186,7 +186,7 @@ class _AnalysisState extends State<BudgetScreen> {
                 right: 0,
                 child: Opacity(
                   opacity: 1,
-                  child: Image.asset('assets/images/coin.png'),
+                  child: Image.asset('lib/assets/coin.png'),
                 ),
               ),
               Positioned(
