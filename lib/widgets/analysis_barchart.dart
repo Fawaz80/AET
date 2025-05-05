@@ -4,69 +4,115 @@ import 'package:fl_chart/fl_chart.dart';
 class AnalysisBarchart extends StatelessWidget {
   const AnalysisBarchart({super.key});
 
-  // Helper method to validate and convert values
-  double _validateValue(double value) {
+  // Make this static since it's used in static-like context
+  static double _validateValue(double value) {
     return value.isFinite ? value : 0.0;
   }
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(16.0),
-      child: BarChart(
-        BarChartData(
-          alignment: BarChartAlignment.spaceAround,
-          maxY: 20, // Fixed maximum Y value
-          minY: 0, // Explicitly set minimum Y
-          barGroups: _createBarGroups(),
-          titlesData: FlTitlesData(
-            show: true,
-            bottomTitles: AxisTitles(
-              sideTitles: SideTitles(
-                showTitles: true,
-                getTitlesWidget: (value, meta) {
-                  // Safe value conversion
-                  final intValue = value.isFinite ? value.toInt() : 0;
-                  switch (intValue) {
-                    case 0: return const Text('Jan');
-                    case 1: return const Text('Feb');
-                    case 2: return const Text('Mar');
-                    case 3: return const Text('Apr');
-                    case 4: return const Text('May');
-                    default: return const Text('');
-                  }
-                },
+      padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+      child: Column(
+        children: [
+          SizedBox(
+            height: 180,
+            child: BarChart(
+              BarChartData(
+                alignment: BarChartAlignment.spaceAround,
+                maxY: 750,
+                minY: 0,
+                barGroups: _createBarGroups(),
+                titlesData: FlTitlesData(
+                  show: true,
+                  leftTitles: AxisTitles(
+                    sideTitles: SideTitles(
+                      showTitles: true,
+                      reservedSize: 28,
+                      interval: 250,
+                      getTitlesWidget: (value, meta) {
+                        return Padding(
+                          padding: const EdgeInsets.only(right: 4.0),
+                          child: Text(
+                            value.toInt().toString(),
+                            style: const TextStyle(
+                              fontSize: 10,
+                              color: Colors.grey,
+                            ),
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+                  topTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
+                  rightTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
+                  bottomTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
+                ),
+                borderData: FlBorderData(show: false), // ✅ moved here
+                gridData: FlGridData(
+                  show: true,
+                  drawVerticalLine: false,
+                  horizontalInterval: 250,
+                  getDrawingHorizontalLine: (value) {
+                    return FlLine(
+                      color: Colors.grey.withOpacity(0.2),
+                      strokeWidth: 1,
+                    );
+                  },
+                ),
               ),
             ),
-            leftTitles: AxisTitles(
-              sideTitles: SideTitles(
-                showTitles: true,
-                getTitlesWidget: (value, meta) {
-                  // Safe value conversion
-                  return Text(value.isFinite ? value.toInt().toString() : '0');
-                },
-                reservedSize: 40,
-              ),
-            ),
-            topTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
-            rightTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
           ),
-          borderData: FlBorderData(show: false),
-          gridData: FlGridData(show: false),
-        ),
+          const SizedBox(height: 40),
+          Wrap(
+            alignment: WrapAlignment.center,
+            spacing: 20,
+            runSpacing: 8,
+            children: [
+              _buildLegendItem(Colors.blue, "Food"),
+              _buildLegendItem(Colors.green, "Electronics"),
+              _buildLegendItem(Colors.orange, "Clothes"),
+              _buildLegendItem(Colors.red, "Gas"),
+              _buildLegendItem(Colors.purple, "Other"),
+            ],
+          ),
+        ],
       ),
     );
   }
 
+  Widget _buildLegendItem(Color color, String text) {
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Container(
+          width: 10,
+          height: 10,
+          decoration: BoxDecoration(
+            color: color,
+            shape: BoxShape.circle,
+          ),
+        ),
+        const SizedBox(width: 4),
+        Text(
+          text,
+          style: const TextStyle(fontSize: 12),
+        ),
+      ],
+    );
+  }
+
   List<BarChartGroupData> _createBarGroups() {
+    double barwidth = 50;
     return [
       BarChartGroupData(
         x: 0,
         barRods: [
           BarChartRodData(
-            toY: _validateValue(8),
+            toY: _validateValue(350),
             color: Colors.blue,
-            width: 20,
+            width: barwidth,
+            borderRadius: BorderRadius.circular(5),
           ),
         ],
       ),
@@ -74,9 +120,10 @@ class AnalysisBarchart extends StatelessWidget {
         x: 1,
         barRods: [
           BarChartRodData(
-            toY: _validateValue(12),
+            toY: _validateValue(250),
             color: Colors.green,
-            width: 20,
+            width: barwidth,
+            borderRadius: BorderRadius.circular(5),
           ),
         ],
       ),
@@ -84,9 +131,10 @@ class AnalysisBarchart extends StatelessWidget {
         x: 2,
         barRods: [
           BarChartRodData(
-            toY: _validateValue(16),
+            toY: _validateValue(200),
             color: Colors.orange,
-            width: 20,
+            width: barwidth,
+            borderRadius: BorderRadius.circular(5),
           ),
         ],
       ),
@@ -94,9 +142,10 @@ class AnalysisBarchart extends StatelessWidget {
         x: 3,
         barRods: [
           BarChartRodData(
-            toY: _validateValue(10),
+            toY: _validateValue(150),
             color: Colors.red,
-            width: 20,
+            width: barwidth,
+            borderRadius: BorderRadius.circular(5),
           ),
         ],
       ),
@@ -104,9 +153,10 @@ class AnalysisBarchart extends StatelessWidget {
         x: 4,
         barRods: [
           BarChartRodData(
-            toY: _validateValue(14),
+            toY: _validateValue(50),
             color: Colors.purple,
-            width: 20,
+            width: barwidth,
+            borderRadius: BorderRadius.circular(5),
           ),
         ],
       ),

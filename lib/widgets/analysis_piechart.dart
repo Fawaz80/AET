@@ -6,17 +6,63 @@ class AnalysisPiechart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(16.0),
-      child: PieChart(
-        PieChartData(
-          sections: _createSections(),
-          borderData: FlBorderData(show: false),
-          sectionsSpace: 2,
-          centerSpaceRadius: 40,
-          startDegreeOffset: 180,
+    return SingleChildScrollView( // ✅ Prevent vertical overflow
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+        child: Column(
+          children: [
+            AspectRatio( // ✅ Keep chart square and responsive
+              aspectRatio: 1.5,
+              child: Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: PieChart(
+                  PieChartData(
+                    sections: _createSections(),
+                    borderData: FlBorderData(show: false),
+                    sectionsSpace: 2,
+                    centerSpaceRadius: 40,
+                    startDegreeOffset: 180,
+                  ),
+                ),
+              ),
+            ),
+            const SizedBox(height: 20),
+            Wrap(
+              alignment: WrapAlignment.center,
+              spacing: 20,
+              runSpacing: 8,
+              children: [
+                _buildLegendItem(Colors.blue, "Food"),
+                _buildLegendItem(Colors.green, "Electronics"),
+                _buildLegendItem(Colors.orange, "Clothes"),
+                _buildLegendItem(Colors.red, "Gas"),
+                _buildLegendItem(Colors.purple, "Other"),
+              ],
+            ),
+          ],
         ),
       ),
+    );
+  }
+
+  Widget _buildLegendItem(Color color, String text) {
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Container(
+          width: 10,
+          height: 10,
+          decoration: BoxDecoration(
+            color: color,
+            shape: BoxShape.circle,
+          ),
+        ),
+        const SizedBox(width: 4),
+        Text(
+          text,
+          style: const TextStyle(fontSize: 12),
+        ),
+      ],
     );
   }
 

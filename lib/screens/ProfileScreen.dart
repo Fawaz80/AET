@@ -25,7 +25,7 @@ class ProfileScreen extends StatelessWidget {
           ),
         ),
       ),
-      bottomNavigationBar: _buildBottomNavigationBar(),
+      
     );
   }
 
@@ -34,12 +34,11 @@ class ProfileScreen extends StatelessWidget {
       clipBehavior: Clip.none,
       alignment: Alignment.center,
       children: [
-        // Blue background with curve
         Container(
           height: 160,
           width: double.infinity,
           decoration: const BoxDecoration(
-            color: Colors.blue,
+            color: Color.fromARGB(255, 59, 35, 245),
             borderRadius: BorderRadius.vertical(bottom: Radius.circular(30)),
           ),
           child: Padding(
@@ -67,7 +66,6 @@ class ProfileScreen extends StatelessWidget {
             ),
           ),
         ),
-        // Profile picture
         Positioned(
           top: 110,
           child: Stack(
@@ -108,7 +106,6 @@ class ProfileScreen extends StatelessWidget {
             ],
           ),
         ),
-        // Name and contact info
         Positioned(
           top: 220,
           child: Column(
@@ -146,53 +143,55 @@ class ProfileScreen extends StatelessWidget {
         ),
         child: Column(
           children: [
-            ListTile(
-              leading: const Icon(Icons.edit_document, color: Colors.black87),
-              title: const Text('Edit profile information'),
-              trailing: const Icon(Icons.arrow_forward_ios, size: 16),
-              onTap: () {
-                // Navigate to EditProfileScreen when tapped
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const EditProfileScreen(),
-                  ),
-                );
-              },
+            Container(
+              color: Colors.white,
+              child: ListTile(
+                leading: const Icon(Icons.edit_document, color: Colors.black87),
+                title: const Text('Edit profile information'),
+                trailing: const Icon(Icons.arrow_forward_ios, size: 16),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const EditProfileScreen(),
+                    ),
+                  );
+                },
+              ),
             ),
             const Divider(height: 1),
-            ListTile(
-              leading: const Icon(Icons.notifications_none, color: Colors.black87),
-              title: const Text('Notifications'),
-              trailing: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  const Text(
-                    'ON',
-                    style: TextStyle(color: Colors.blue, fontWeight: FontWeight.w500),
-                  ),
-                  const SizedBox(width: 8),
-                  const Icon(Icons.arrow_forward_ios, size: 16),
-                ],
+            Container(
+              color: Colors.white,
+              child: ListTile(
+                leading: const Icon(Icons.notifications_none, color: Colors.black87),
+                title: const Text('Notifications'),
+                trailing: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: const [
+                    Text('ON', style: TextStyle(color: Colors.blue, fontWeight: FontWeight.w500)),
+                    SizedBox(width: 8),
+                    Icon(Icons.arrow_forward_ios, size: 16),
+                  ],
+                ),
+                onTap: () {},
               ),
-              onTap: () {},
             ),
             const Divider(height: 1),
-            ListTile(
-              leading: const Icon(Icons.language, color: Colors.black87),
-              title: const Text('Language'),
-              trailing: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  const Text(
-                    'English',
-                    style: TextStyle(color: Colors.blue, fontWeight: FontWeight.w500),
-                  ),
-                  const SizedBox(width: 8),
-                  const Icon(Icons.arrow_forward_ios, size: 16),
-                ],
+            Container(
+              color: Colors.white,
+              child: ListTile(
+                leading: const Icon(Icons.language, color: Colors.black87),
+                title: const Text('Language'),
+                trailing: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: const [
+                    Text('English', style: TextStyle(color: Colors.blue, fontWeight: FontWeight.w500)),
+                    SizedBox(width: 8),
+                    Icon(Icons.arrow_forward_ios, size: 16),
+                  ],
+                ),
+                onTap: () {},
               ),
-              onTap: () {},
             ),
           ],
         ),
@@ -210,18 +209,24 @@ class ProfileScreen extends StatelessWidget {
         ),
         child: Column(
           children: [
-            ListTile(
-              leading: const Icon(Icons.password, color: Colors.black87),
-              title: const Text('Password'),
-              trailing: const Icon(Icons.arrow_forward_ios, size: 16),
-              onTap: () {},
+            Container(
+              color: Colors.white,
+              child: ListTile(
+                leading: const Icon(Icons.password, color: Colors.black87),
+                title: const Text('Password'),
+                trailing: const Icon(Icons.arrow_forward_ios, size: 16),
+                onTap: () {},
+              ),
             ),
             const Divider(height: 1),
-            ListTile(
-              leading: const Icon(Icons.calculate, color: Colors.black87),
-              title: const Text('Calculate Zakat'),
-              trailing: const Icon(Icons.arrow_forward_ios, size: 16),
-              onTap: () {},
+            Container(
+              color: Colors.white,
+              child: ListTile(
+                leading: const Icon(Icons.calculate, color: Colors.black87),
+                title: const Text('Calculate Zakat'),
+                trailing: const Icon(Icons.arrow_forward_ios, size: 16),
+                onTap: () {},
+              ),
             ),
           ],
         ),
@@ -239,25 +244,34 @@ class ProfileScreen extends StatelessWidget {
         ),
         child: Column(
           children: [
-            ListTile(
-              leading: const Icon(Icons.help_outline, color: Colors.black87),
-              title: const Text('Help & Support'),
-              trailing: const Icon(Icons.arrow_forward_ios, size: 16),
-              onTap: () {},
+            Container(
+              color: Colors.white,
+              child: ListTile(
+                leading: const Icon(Icons.help_outline, color: Colors.black87),
+                title: const Text('Help & Support'),
+                trailing: const Icon(Icons.arrow_forward_ios, size: 16),
+                onTap: () {},
+              ),
             ),
             const Divider(height: 1),
-            ListTile(
-              leading: const Icon(Icons.message_outlined, color: Colors.black87),
-              title: const Text('Contact us'),
-              trailing: const Icon(Icons.arrow_forward_ios, size: 16),
-              onTap: () {},
+            Container(
+              color: Colors.white,
+              child: ListTile(
+                leading: const Icon(Icons.message_outlined, color: Colors.black87),
+                title: const Text('Contact us'),
+                trailing: const Icon(Icons.arrow_forward_ios, size: 16),
+                onTap: () {},
+              ),
             ),
             const Divider(height: 1),
-            ListTile(
-              leading: const Icon(Icons.privacy_tip_outlined, color: Colors.black87),
-              title: const Text('Privacy policy'),
-              trailing: const Icon(Icons.arrow_forward_ios, size: 16),
-              onTap: () {},
+            Container(
+              color: Colors.white,
+              child: ListTile(
+                leading: const Icon(Icons.privacy_tip_outlined, color: Colors.black87),
+                title: const Text('Privacy policy'),
+                trailing: const Icon(Icons.arrow_forward_ios, size: 16),
+                onTap: () {},
+              ),
             ),
           ],
         ),
@@ -265,34 +279,6 @@ class ProfileScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildBottomNavigationBar() {
-    return BottomNavigationBar(
-      type: BottomNavigationBarType.fixed,
-      selectedItemColor: Colors.blue,
-      unselectedItemColor: Colors.grey[600],
-      currentIndex: 3, // Profile tab
-      showSelectedLabels: false,
-      showUnselectedLabels: false,
-      backgroundColor: Colors.white,
-      elevation: 8,
-      items: const [
-        BottomNavigationBarItem(
-          icon: Icon(Icons.home_outlined),
-          label: 'Home',
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.wallet),
-          label: 'Wallet',
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.add_circle),
-          label: 'Add',
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.person_outline),
-          label: 'Profile',
-        ),
-      ],
-    );
   }
-}
+
+

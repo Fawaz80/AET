@@ -87,15 +87,16 @@ class _DashboardScreenState extends State<DashboardScreen> {
         selectedItemColor: Colors.blue,
         unselectedItemColor: Colors.grey,
         items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
           BottomNavigationBarItem(
-              icon: Icon(Icons.pie_chart), label: "Analysis"),
+              icon: Icon(Icons.home, size: 40), // Directly set size here
+              label: ""),
           BottomNavigationBarItem(
-              icon: Icon(Icons.chat), label: "Chatbot"), // New Chatbot item
+              icon: Icon(Icons.pie_chart, size: 40), label: ""),
+          BottomNavigationBarItem(icon: Icon(Icons.chat, size: 40), label: ""),
           BottomNavigationBarItem(
-              icon: Icon(Icons.notifications), label: "Reminders"),
+              icon: Icon(Icons.wallet, size: 40), label: ""),
           BottomNavigationBarItem(
-              icon: Icon(Icons.settings), label: "Settings"),
+              icon: Icon(Icons.person, size: 40), label: ""),
         ],
       ),
     );

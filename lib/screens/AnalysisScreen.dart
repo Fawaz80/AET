@@ -3,6 +3,7 @@ import 'package:auto_expense_tracker/widgets/analysis_piechart.dart';
 import 'package:auto_expense_tracker/widgets/transaction_search_bar.dart';
 import 'package:flutter/material.dart';
 import '../models/financial_data.dart';
+import 'dart:math';
 
 class AnalysisScreen extends StatefulWidget {
   final FinancialData financialData;
@@ -16,6 +17,10 @@ class AnalysisScreen extends StatefulWidget {
 class _AnalysisScreenState extends State<AnalysisScreen> {
   int _currentTextIndex = 0;
   final List<String> _analysisTexts = ['PieChart', 'BarChart'];
+  final Random _random = Random();
+
+  String _sortValue = 'By Month';
+  String _filterValue = 'By Date';
 
   @override
   Widget build(BuildContext context) {
@@ -29,22 +34,76 @@ class _AnalysisScreenState extends State<AnalysisScreen> {
               padding: EdgeInsets.all(16.0),
               child: TransactionSearchBar(),
             ),
+            // Sort & Filter Controls with "Expense" title
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  // Right side: label
+                  const Text(
+                    'Expense',
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                      height: 1.0,
+                    ),
+                  ),
+                  Row(
+                    children: [
+                      DropdownButton<String>(
+                        value: _sortValue,
+                        items: ['By Year', 'By Month', 'By Week']
+                            .map((value) => DropdownMenuItem(
+                                  value: value,
+                                  child: Text(value),
+                                ))
+                            .toList(),
+                        onChanged: (value) {
+                          setState(() {
+                            _sortValue = value!;
+                          });
+                        },
+                      ),
+                      const SizedBox(width: 8),
+                      DropdownButton<String>(
+                        value: _filterValue,
+                        items: ['By Date', 'By Category']
+                            .map((value) => DropdownMenuItem(
+                                  value: value,
+                                  child: Text(value),
+                                ))
+                            .toList(),
+                        onChanged: (value) {
+                          setState(() {
+                            _filterValue = value!;
+                          });
+                        },
+                      ),
+                    ],
+                  )
+                ],
+              ),
+            ),
+
             // Chart area with swipe gestures
             SizedBox(
-              height: MediaQuery.of(context).size.height * 0.6, // 60% of screen
+              height: MediaQuery.of(context).size.height * 0.35,
               child: GestureDetector(
                 onHorizontalDragEnd: (details) {
                   if (details.primaryVelocity == null) return;
-                  
+
                   if (details.primaryVelocity! > 0) {
                     // Right swipe
                     setState(() {
-                      _currentTextIndex = (_currentTextIndex + 1) % _analysisTexts.length;
+                      _currentTextIndex =
+                          (_currentTextIndex + 1) % _analysisTexts.length;
                     });
                   } else if (details.primaryVelocity! < 0) {
                     // Left swipe
                     setState(() {
-                      _currentTextIndex = (_currentTextIndex - 1) % _analysisTexts.length;
+                      _currentTextIndex =
+                          (_currentTextIndex - 1) % _analysisTexts.length;
                       if (_currentTextIndex < 0) {
                         _currentTextIndex = _analysisTexts.length - 1;
                       }
@@ -54,7 +113,8 @@ class _AnalysisScreenState extends State<AnalysisScreen> {
                 child: _buildCurrentChart(),
               ),
             ),
-            // Additional content
+
+            // Transaction List
             _buildTransactionList(),
           ],
         ),
@@ -80,31 +140,107 @@ class _AnalysisScreenState extends State<AnalysisScreen> {
   }
 
   Widget _buildTransactionList() {
+    // List of company names
+    final List<String> companies = [
+      'McDonalds',
+      'Apple CO.',
+      'Zara Co.',
+      'Meed',
+      'Steam Store',
+      'Mcdonalds',
+      'Samsung inc.',
+      'Tommy Hilfiger',
+      'Aramco Co.',
+      'Uber'
+    ];
+
+    // List of categories
+    final List<String> categories = [
+      'Food',
+      'Electronics',
+      'Clothes',
+      'Gas',
+      'Other'
+    ];
+
     return Padding(
-      padding: const EdgeInsets.all(16.0),
+      padding: const EdgeInsets.symmetric(horizontal: 16.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text(
-            'Recent Transactions',
-            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+          const Padding(
+            padding: EdgeInsets.only(top: 12.0),
+            child: Text(
+              'Recent Transactions',
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+                height: 1.0,
+              ),
+            ),
           ),
-          
           ListView.separated(
             physics: const NeverScrollableScrollPhysics(),
             shrinkWrap: true,
-            itemCount: 10,
-            separatorBuilder: (context, index) => const Divider(height: 1),
+            itemCount: companies.length,
+            separatorBuilder: (context, index) =>
+                const Divider(height: 1, thickness: 1),
             itemBuilder: (context, index) {
-              return ListTile(
-                leading: const Icon(Icons.receipt, color: Colors.blue),
-                title: Text('Transaction ${index + 1}'),
-                subtitle: Text('Category • ${_getFormattedDate(index)}'),
-                trailing: Text(
-                  '-\$${(index + 1) * 50}',
-                  style: const TextStyle(
-                    color: Colors.red,
-                    fontWeight: FontWeight.bold,
+              final company = companies[index];
+              final category = categories[index % categories.length];
+              final amount = (_random.nextInt(750) + 1).toString();
+              final date = _getFormattedDate(index);
+              final receiptNumber = 'RCPT-${1000 + index}';
+
+              return InkWell(
+                onTap: () {
+                  _showTransactionDetails(
+                    context,
+                    company: company,
+                    amount: amount,
+                    date: date,
+                    category: category,
+                    receiptNumber: receiptNumber,
+                  );
+                },
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 4.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Row(
+                        children: [
+                          Icon(
+                            _getCategoryIcon(category),
+                            color: _getCategoryColor(category),
+                            size: 20,
+                          ),
+                          const SizedBox(width: 8),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                company,
+                                style: const TextStyle(fontSize: 14),
+                              ),
+                              Text(
+                                '$category • $date',
+                                style: const TextStyle(
+                                    fontSize: 12, color: Colors.grey),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                      Text(
+                        '-\$$amount',
+                        style: const TextStyle(
+                          fontSize: 14,
+                          color: Colors.red,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               );
@@ -113,6 +249,87 @@ class _AnalysisScreenState extends State<AnalysisScreen> {
         ],
       ),
     );
+  }
+
+  void _showTransactionDetails(
+    BuildContext context, {
+    required String company,
+    required String amount,
+    required String date,
+    required String category,
+    required String receiptNumber,
+  }) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Transaction Details'),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              _buildDetailRow('Company:', company),
+              _buildDetailRow('Amount:', '-\$$amount'),
+              _buildDetailRow('Date:', date),
+              _buildDetailRow('Category:', category),
+              _buildDetailRow('Receipt #:', receiptNumber),
+            ],
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(),
+              child: const Text('Close'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  Widget _buildDetailRow(String label, String value) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 4.0),
+      child: Row(
+        children: [
+          Text(
+            label,
+            style: const TextStyle(fontWeight: FontWeight.bold),
+          ),
+          const SizedBox(width: 8),
+          Text(value),
+        ],
+      ),
+    );
+  }
+
+  IconData _getCategoryIcon(String category) {
+    switch (category) {
+      case 'Food':
+        return Icons.restaurant;
+      case 'Electronics':
+        return Icons.electrical_services;
+      case 'Clothes':
+        return Icons.checkroom;
+      case 'Gas':
+        return Icons.local_gas_station;
+      default:
+        return Icons.receipt;
+    }
+  }
+
+  Color _getCategoryColor(String category) {
+    switch (category) {
+      case 'Food':
+        return Colors.green;
+      case 'Electronics':
+        return Colors.blue;
+      case 'Clothes':
+        return Colors.purple;
+      case 'Gas':
+        return Colors.orange;
+      default:
+        return Colors.grey;
+    }
   }
 
   String _getFormattedDate(int daysAgo) {
