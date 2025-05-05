@@ -120,9 +120,8 @@ class _BudgetCardState extends State<BudgetCard> {
                 ),
               ),
               LayoutBuilder(builder: (context, constraints) {
-                final double percent =
-                    (widget.budgetCurr ?? 0) / widget.budgetAmount;
-                final width = constraints.maxWidth * percent.clamp(0, 1);
+
+                final width = constraints.maxWidth * ((widget.budgetCurr ?? 0)! / widget.budgetAmount);
                 return Container(
                   height: 8,
                   width: width,

@@ -15,17 +15,19 @@ class _ChatScreenState extends State<ChatScreen> {
   final TextEditingController _controller = TextEditingController();
 
   // Bubble colors
-  final Color _userColor = const Color(0xFFD4F1A3); // light green
-  final Color _aiColor = const Color(0xFFB3C7F9); // light blue
-  final Color _borderGrey = Colors.grey.shade400;
-  final Color _primaryColor = const Color.fromARGB(255, 59, 35, 245);
+
+  final Color _userColor   = const Color(0xFFD4F1A3);  // light green
+  final Color _aiColor     = const Color(0xFFB3C7F9);  // light blue
+  final Color _borderGrey  = Colors.grey.shade400;
+  final Color _primaryColor= const Color.fromARGB(255, 59, 35, 245);
+
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white, // entire page white
-      appBar: AppBar(
-        // white bar, no title
+
+      backgroundColor: Colors.white,          // entire page white
+      appBar: AppBar(                         // white bar, no title
         backgroundColor: Colors.white,
         elevation: 0,
         automaticallyImplyLeading: true,
@@ -41,28 +43,19 @@ class _ChatScreenState extends State<ChatScreen> {
                       children: [
                         Image.asset(
                           'lib/assets/chat_placeholder.png',
-                          width: 50,
-                          height: 50,
+
+                          width: 120,
+                          height: 120,
+
                         ),
                         const SizedBox(height: 24),
                         Text(
                           "Talk to your spending",
                           style: GoogleFonts.inter(
-                            fontSize: 34,
-                            color: Colors.black,
-                          ),
-                        ),
-                        const SizedBox(height: 8),
-                        Container(
-                          alignment: Alignment.center,
-                          padding: const EdgeInsets.symmetric(horizontal: 24),
-                          child: Text(
-                            "Understand your money better—track, save, and manage with a chat",
-                            style: GoogleFonts.inter(
-                              fontSize: 17,
-                              color: Colors.black38,
-                            ),
-                            textAlign: TextAlign.center,
+
+                            fontSize: 16,
+                            color: Colors.black38,
+
                           ),
                         ),
                       ],
@@ -72,7 +65,9 @@ class _ChatScreenState extends State<ChatScreen> {
                     padding: const EdgeInsets.all(12),
                     itemCount: _messages.length,
                     itemBuilder: (context, i) {
-                      final msg = _messages[i];
+
+                      final msg    = _messages[i];
+
                       final isUser = msg.sender == Sender.user;
                       return Align(
                         alignment: isUser
@@ -109,12 +104,16 @@ class _ChatScreenState extends State<ChatScreen> {
 
           // Input area with grey border around both TextField and send button
           Padding(
-            padding: const EdgeInsets.all(16),
+
+            padding: const EdgeInsets.all(8.0),
+
             child: Container(
               decoration: BoxDecoration(
                 color: Colors.white,
                 border: Border.all(color: _borderGrey),
-                borderRadius: BorderRadius.circular(12),
+
+                borderRadius: BorderRadius.circular(24),
+
               ),
               child: Row(
                 children: [
