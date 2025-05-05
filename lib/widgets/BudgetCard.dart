@@ -2,16 +2,9 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-enum BudgetType { monthly, weekly}
+enum BudgetType { monthly, weekly }
 
 class BudgetCard extends StatefulWidget {
-  /// You can pass in whatever values make sense for your app.
-  /// For example:
-  ///   - budgetTitle: "Food"
-  ///   - budgetAmount: 3500
-  ///   - progressPercent: 0.7 (meaning 70% spent)
-  ///   - message: "You are doing really great!"
-  ///
   final String budgetTitle;
   final double budgetAmount;
   final double? budgetCurr;
@@ -33,11 +26,9 @@ class BudgetCard extends StatefulWidget {
 
   @override
   _BudgetCardState createState() => _BudgetCardState();
-
 }
 
 class _BudgetCardState extends State<BudgetCard> {
-
   bool _isSelected = false;
 
   void _toggleSelection() {
@@ -46,79 +37,79 @@ class _BudgetCardState extends State<BudgetCard> {
     });
   }
 
+  // Mapping from category name to emoji
+  static const Map<String, String> _categoryEmoji = {
+    'Restaurants':   '🍽️',
+    'Cafe':          '☕',
+    'Gas':           '⛽',
+    'Groceries':     '🛒',
+    'Entertainment': '🎬',
+    'Shopping':      '🛍️',
+  };
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
+    final String emoji = _categoryEmoji[widget.budgetTitle] ?? '';
     return Container(
       margin: const EdgeInsets.all(16),
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: const Color.fromARGB(255, 67, 45, 236),
+        color: _isSelected 
+            ? Colors.blue.shade700 
+            : const Color.fromARGB(255, 67, 45, 236),
         borderRadius: BorderRadius.circular(16),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Top text: "Monthly Budget"
+          // Top text: budget frequency or type
           Text(
-            "Monthly Budget",
+            '${widget.budgetType[0].toUpperCase()}${widget.budgetType.substring(1)} Budget',
             style: GoogleFonts.inter(
-                  color: Colors.white,
-                  fontWeight: FontWeight.w500,
-                ),
+              color: Colors.white,
+              fontWeight: FontWeight.w500,
+            ),
           ),
           const SizedBox(height: 12),
 
-          // Row with the emoji (or image), budget title and amount
+          // Row with the emoji, category title, and amount
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Row(
                 children: [
-                  // Circle avatar for the "party popper" emoji or an icon.
-                  // If you have an image asset, you can use AssetImage;
-                  // or if you just want an emoji, wrap it in a Text widget with a bigger fontSize.
                   CircleAvatar(
                     backgroundColor: Colors.white,
                     radius: 24,
                     child: Text(
-                      "🎉",
-                      style: TextStyle(
-                        fontSize: 28,
-                        color: Colors.orange[700],
-                      ),
+                      emoji,
+                      style: const TextStyle(fontSize: 28),
                     ),
                   ),
                   const SizedBox(width: 12),
-                  // Budget category title
                   Text(
                     widget.budgetTitle,
                     style: GoogleFonts.inter(
-                          color: Colors.white,
-                          fontWeight: FontWeight.w500,
-                          fontSize: 17,
-                        ),
+                      color: Colors.white,
+                      fontWeight: FontWeight.w500,
+                      fontSize: 17,
+                    ),
                   ),
                 ],
               ),
-
-              
-              // Budget amount on the right side
               Text(
-                "SR ${widget.budgetAmount.toStringAsFixed(0)}", 
+                'SR ${widget.budgetAmount.toStringAsFixed(0)}',
                 style: GoogleFonts.inter(
-                      color: Colors.greenAccent,
-                      fontWeight: FontWeight.w500,
-                      fontSize: 18,
-                    ),
+                  color: Colors.greenAccent,
+                  fontWeight: FontWeight.w500,
+                  fontSize: 18,
+                ),
               ),
             ],
           ),
           const SizedBox(height: 16),
 
           // Progress bar
-          // You can either use LinearProgressIndicator or build a custom bar.
           Stack(
             children: [
               Container(
@@ -128,8 +119,8 @@ class _BudgetCardState extends State<BudgetCard> {
                   borderRadius: BorderRadius.circular(8),
                 ),
               ),
-              // The actual "filled" portion
               LayoutBuilder(builder: (context, constraints) {
+
                 final width = constraints.maxWidth * ((widget.budgetCurr ?? 0)! / widget.budgetAmount);
                 return Container(
                   height: 8,
@@ -143,7 +134,14 @@ class _BudgetCardState extends State<BudgetCard> {
             ],
           ),
           const SizedBox(height: 16),
-          // Bottom row for the emoji + message
+
+          // Optional message
+          if (widget.message.isNotEmpty) ...[
+            Text(
+              widget.message,
+              style: GoogleFonts.inter(color: Colors.white70),
+            ),
+          ],
         ],
       ),
     );

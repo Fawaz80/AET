@@ -278,11 +278,11 @@ Widget _buildPage1() {
             ),
             DropdownMenuItem(
               value: "Entertainment",
-              child: Text("🎉 Entertainment"),
+              child: Text("🎬 Entertainment"),
             ),
             DropdownMenuItem(
               value: "Shopping",
-              child: Text("🛍 Shopping"),
+              child: Text("🛍️ Shopping"),
             ),
           ],
           onChanged: (val) {

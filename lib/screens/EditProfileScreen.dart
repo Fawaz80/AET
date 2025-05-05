@@ -159,7 +159,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
               child: Row(
                 children: [
                   Image.asset(
-                    'assets/images/KSA_flag.png', // You would need this asset in your project
+                    'lib/assets/KSA_flag.png', // You would need this asset in your project
                     width: 24,
                     height: 16,
                     fit: BoxFit.cover,
